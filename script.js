@@ -9,38 +9,44 @@ function getComputerChoice() {
 }
 
 function playRound(humanChoice, computerChoice) {
+    let resultElement = document.createElement('p');
+    let resultDiv = document.querySelector(`div.result`);
+    
     // If human picks rock
     if (humanChoice === `rock` && computerChoice === `rock`) {
-        console.log(`It's a tie! Both players choose rock.`);
+        resultElement.innerText = `It's a tie! Both players choose rock.` 
     } else if (humanChoice === `rock` && computerChoice === `paper`) {
-        console.log(`You lose! Rock loses to paper.`);
+        resultElement.innerText = `You lose! Rock loses to paper.`;
         computerScore++;
     } else if (humanChoice === `rock` && computerChoice === `scissors`) {
-        console.log(`You win! Rock beats scissors.`);
+        resultElement.innerText = `You win! Rock beats scissors.`;
         humanScore++;
     }
 
     // If human picks paper
     if (humanChoice === `paper` && computerChoice === `paper`) {
-        console.log(`It's a tie! Both players choose paper.`);
+        resultElement = `It's a tie! Both players choose paper.`;
     } else if (humanChoice === `paper` && computerChoice === `rock`) {
-        console.log(`You win! Paper beats rock.`);
+        resultElement = `You win! Paper beats rock.`;
         humanScore++;
     } else if (humanChoice === `paper` && computerChoice === `scissors`) {
-        console.log(`You lose! Paper loses to scissors.`);
+        resultElement = `You lose! Paper loses to scissors.`;
         computerScore++;
     }
 
     // If human picks scissors
     if (humanChoice === `scissors` && computerChoice === `scissors`) {
-        console.log(`It's a tie! Both players choose scissors.`);
+        resultElement = `It's a tie! Both players choose scissors.`;
     } else if (humanChoice === `scissors` && computerChoice === `rock`) {
-        console.log(`You lose! Scissors loses to rock.`);
+        resultElement = `You lose! Scissors loses to rock.`;
         computerScore++;
     } else if (humanChoice === `scissors` && computerChoice === `paper`) {
-        console.log(`You win! Scissors beat paper.`);
+        resultElement = `You win! Scissors beat paper.`;
         humanScore++;
     }
+
+    resultDiv.append(resultElement);
+    resultElement.innerText = '';   
 }
 
 function initialize() {
