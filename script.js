@@ -8,12 +8,6 @@ function getComputerChoice() {
     return choice[index];
 }
 
-function getHumanChoice() {
-    let choice = prompt(`What is your choice?`);
-
-    return choice;
-}
-
 function playRound(humanChoice, computerChoice) {
     // If human picks rock
     if (humanChoice === `rock` && computerChoice === `rock`) {
@@ -49,13 +43,28 @@ function playRound(humanChoice, computerChoice) {
     }
 }
 
-for (let i=1; i < 6; i++) {
-    let humanChoice = getHumanChoice();
-    let computerChoice = getComputerChoice();
+function initialize() {
+    let round = 0;
+    let buttons = document.querySelectorAll(`button`);
+        
+    for (const button of buttons) {
+        button.addEventListener("click", (e) => {
+            let elementID = button.getAttribute(`id`);
+            let humanChoice = elementID;
+            let computerChoice = getComputerChoice();
 
-    console.log(`Round ${i}`);
-    playRound(humanChoice, computerChoice);
-    console.log(`Human score: ${humanScore}`);
-    console.log(`Computer score: ${computerScore}`);
+            if (round < 6){
+                playRound(humanChoice, computerChoice);
+                console.log(`Round ${round}`);
+                console.log(`Human score: ${humanScore}`);
+                console.log(`Computer score: ${computerScore}`);
+                round++;
+            } else {
+                console.log(`Up to 5 rounds only! Refresh to start game again!`);
+                return;
+            }
+        });
+    }
 }
 
+initialize();
